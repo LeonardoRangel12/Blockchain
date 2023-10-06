@@ -1,11 +1,13 @@
 # Blockchain
 Para poderlo ejecutar tienen que instalar node.js
 ## Para ejecutar frontend
-'''console
+```console
 npm run dev
-'''
+```
 
 ## Para ejecutar backend
-'''console
+```console
 npm start 
-'''
+```
+
+Los dos tienen que estar simultaneamente
