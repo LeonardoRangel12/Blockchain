@@ -8,6 +8,9 @@ import header from "./components/header";
 import footer from "./components/footer";
 import home from "./components/home";
 import user from "./components/user";
+
+
+
 const app = async () => {
     $("#header").html(header());
     // ROUTER
