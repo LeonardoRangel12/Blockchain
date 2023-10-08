@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import axios from 'axios';
 import {connect} from './connect';
-import {disconnectWallet} from './phantomLibrary';
+import {disconnectWallet} from './wallet';
 const transfer = async() =>{
 
     const template = `        
@@ -30,9 +30,12 @@ const transfer = async() =>{
     return template;
 }
 
+
+
 $(".container").on("click", "#disconnect", async () => {
-    if(await disconnectWallet()) 
-        $("#content").html(await connect());
+    if(!await disconnectWallet()) 
+        alert("Algo salió mal");
+    $("#content").html(await connect());
       
 });
 

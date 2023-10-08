@@ -8,7 +8,7 @@ const getRandomUser = async (req,res,next) => {
     */
     const  resp = await axios.get("https://randomuser.me/api");
     const data = resp.data.results[0];
-    return data;
+    res.send(data);
 };
 
 module.exports = {getRandomUser}

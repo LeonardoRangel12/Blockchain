@@ -30,12 +30,29 @@ const transfer = async (req,res,next) => {
     });
 };
 
+// Crea la cookie de la publicKey
 const connect = async (req, res, next) => {
-    const secretKey = Uint8Array.from(req.body.phrase);
+    res.writeHead( 200, {
+        "Set-Cookie": `publicKey=${req.body.publicKey}; Path=/; HttpOnly;`,
+        "Access-Control-Allow-Credentials": "true",
+      }).send();
 
-    const keypair = Keypair.fromSecretKey(secretKey);
-
-    return keypair;
 }
 
-module.exports = {transfer, connect}
+// Elimina la cookie de la publicKey
+const disconnect = async(req,res,next) => {
+    res.writeHead( 200, {
+      "Set-Cookie": `publicKey=null; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; HttpOnly;`,
+      "Access-Control-Allow-Credentials": "true",
+    }).send();
+}
+
+// Checa si existe la cookie de la publicKey
+const login = async(req,res,next) => {
+    if(req.cookies.publicKey)
+        res.send(req.cookies.publicKey);
+    else
+        res.send(false);
+}
+
+module.exports = {transfer, connect, disconnect, login}

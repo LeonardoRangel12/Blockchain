@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "nodemon node ./bin/www"
   },
   "dependencies": {
     "@solana/web3.js": "^1.87.0",
@@ -14,5 +14,8 @@
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }

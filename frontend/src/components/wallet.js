@@ -1,3 +1,4 @@
+import axios from "axios";
 const connectWallet = async () => {
     /*
         Este código verifica si se tiene Phantom instalado, y si lo está se conecta a la wallet.
@@ -21,16 +22,25 @@ const connectWallet = async () => {
     const {publicKey} = await phantom.connect();
 
     // Crea la cookie
-    document.cookie = `publicKey=${publicKey.toString()}; Path=/;`;
-
-    return publicKey;
+    const res = await axios.post("http://localhost:3001/wallet/connect", {publicKey}, {"withCredentials": true});
+    if (res.status === 200) return publicKey;
+    
+    return false;
 }
 
 // Función para desconectar la wallet
 const disconnectWallet = async () => {
 
-    document.cookie = `publicKey=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
-    return true;
+    const res = await axios.get("http://localhost:3001/wallet/disconnect" , {"withCredentials": true});
+    if (res.status === 200) return true;
+    return false;
 }
 
-export {connectWallet, disconnectWallet};
+const loginWallet = async () => {
+    const res = await axios.get("http://localhost:3001/wallet/login", {"withCredentials": true});
+    if(!res.data) return false;
+    return res.data;
+    
+}
+
+export {connectWallet, disconnectWallet, loginWallet};
