@@ -8,20 +8,42 @@ import header from "./components/header";
 import footer from "./components/footer";
 import home from "./components/home";
 import user from "./components/user";
+import login from "./components/login";
+import signUp from "./components/signUp";
+
+//scripts que no son componentes
+import handleSignUp from "./scripts/signup";
+import handleLogIn from "./scripts/login";
+
 const app = async () => {
-    $("#header").html(header());
-    // ROUTER
-    if (window.location.pathname === "/" || window.location.pathname === "/home") {
-        $("#content").html(await home());    
+
+    //Páginas sin footer o header
+    if (window.location.pathname === "/login")
+    {
+        $("#content").html(await login()); 
+        handleLogIn();
     }
-    else if(window.location.pathname === "/user"){
-        $("#content").html(await user());
+    else if (window.location.pathname === "/signup")
+    {
+        $("#content").html(await signUp());
+        handleSignUp();
     }
-    else{
-        $("#content").html("<h1>404 Not Found</h1>");
+    else
+    {
+        $("#header").html(header());
+        // ROUTER
+        if (window.location.pathname === "/" || window.location.pathname === "/home") {
+            $("#content").html(await home());    
+        }
+        else if(window.location.pathname === "/user"){
+            $("#content").html(await user());
+        }
+        else{
+            $("#content").html("<h1>404 Not Found</h1>");
+        }
+        
+        $("#footer").html(footer());
     }
-    
-    $("#footer").html(footer());
 };
 
 // Init app
