@@ -10,13 +10,16 @@ import home from "./components/home";
 import user from "./components/user";
 import login from "./components/login";
 import signUp from "./components/signUp";
-
+import protectedRoute from "./components/protectedRoute.js";
 //scripts que no son componentes
 import handleSignUp from "./scripts/signup";
 import handleLogIn from "./scripts/login";
+import isLogged from "./scripts/auth";
 
 const app = async () => {
-
+    console.log("AJA");
+    const logged = await isLogged();
+    console.log(logged);
     //Páginas sin footer o header
     if (window.location.pathname === "/login")
     {
@@ -27,6 +30,10 @@ const app = async () => {
     {
         $("#content").html(await signUp());
         handleSignUp();
+    }
+    else if(logged)
+    {
+        $("#content").html(await protectedRoute());    
     }
     else
     {

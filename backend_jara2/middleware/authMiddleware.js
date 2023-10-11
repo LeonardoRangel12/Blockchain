@@ -6,7 +6,7 @@ const requireAuth = (req, res, next) => {
     if(token) {
        jwt.verify(token, 'secret', (err, decodedToken) => {
         if(err) {
-            res.status(401);
+            res.status(401).send("User not logged");
         }
         else
         {
@@ -16,7 +16,7 @@ const requireAuth = (req, res, next) => {
     }
     else
     {
-        res.status(401);
+        res.status(401).send("User not logged");
     }
 }
 
