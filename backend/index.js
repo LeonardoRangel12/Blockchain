@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');//const routerApi = require('./routes');
-const authRoutes = require('./routes/authRoutes');
+const routes = require('./routes/routes');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
@@ -24,4 +24,5 @@ mongoose.connect(dbURI/*, { useNewUrlParser: true, useUnifiedTopology: true, use
   .catch((err) => console.log(err));
 
 
-app.use(authRoutes);
+app.use(routes);
+
