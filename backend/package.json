@@ -5,15 +5,27 @@
   "scripts": {
     "start": "nodemon node ./bin/www"
   },
+  "workspaces": [
+    "backend",
+    "frontend",
+    "shared"
+  ],
   "dependencies": {
-    "@solana/web3.js": "^1.87.0",
+    "@metaplex-foundation/js": "^0.19.5",
+    "@metaplex-foundation/mpl-token-metadata": "^3.1.0",
+    "@moralisweb3/common-sol-utils": "^2.23.1",
+    "@solana/web3.js": "^1.87.1",
+    "@thirdweb-dev/storage": "^2.0.0",
     "axios": "^1.5.1",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
-    "morgan": "~1.9.1"
+    "moralis": "^2.23.1",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.5-lts.1",
+    "web3.storage": "^4.5.5"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

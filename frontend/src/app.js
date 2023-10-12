@@ -7,6 +7,7 @@ import header from "./components/header";
 import footer from "./components/footer";
 import user from "./components/user";
 import {connect} from "./components/connect";
+import subir from "./components/subir";
 
 
 const app = async () => {
@@ -16,6 +17,9 @@ const app = async () => {
     }
     else if (window.location.pathname === "/transferir" ) {
         $("#content").html(await connect());
+    }
+    else if (window.location.pathname === "/subir" ) {
+        $("#content").html(await subir());
     }
     else{
         $("#content").html("404 Not Found");

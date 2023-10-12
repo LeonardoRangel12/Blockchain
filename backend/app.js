@@ -6,7 +6,7 @@ var cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/user');
 var walletRouter = require('./routes/wallet');
-const session = require('express-session');
+var ipfsRouter = require('./routes/ipfs');
 var app = express();
 app.use(cors({
     origin: true,
@@ -21,4 +21,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/wallet', walletRouter);
+app.use("/ipfs", ipfsRouter);
 module.exports = app;
