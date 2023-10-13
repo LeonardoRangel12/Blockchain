@@ -1,5 +1,5 @@
-const footer = async () => {
-    const footer = `
+const signup = async () => {
+    const signup = `
     <!-- Section: Design Block -->
 <section class="background-radial-gradient overflow-hidden">
   <style>
@@ -136,7 +136,7 @@ const footer = async () => {
 <!-- Section: Design Block -->
     `;
 
-  return footer;
+  return signup;
 }
 
-export default footer;
+export default signup;
