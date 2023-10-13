@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+const mongoose = require('mongoose');
 /**
  * Module dependencies.
  */
@@ -24,6 +24,9 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
+
+const dbURI = 'mongodb+srv://blockchain:X3I6IScIGR3VRSqT@blockchain.cgnhn7a.mongodb.net/blockchain';
+mongoose.connect(dbURI);
 
 server.listen(port);
 server.on('error', onError);
