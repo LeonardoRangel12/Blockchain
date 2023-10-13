@@ -27,7 +27,7 @@ const app = async () => {
     else{
         $("#content").html("404 Not Found");
     }
-    $("#footer").html(footer());
+    $("#footer").html(await footer());
 };
 
 // Init app
