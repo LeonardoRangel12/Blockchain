@@ -34,7 +34,6 @@ const startMoralis = async() => {
 }
 startMoralis();
 
-
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use("/game", gameRouter);

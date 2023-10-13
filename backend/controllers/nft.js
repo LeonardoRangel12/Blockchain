@@ -11,14 +11,9 @@ const {
 const {createGame} = require("../services/game");
 
 const mintNFT = async (req, res, next) => {
+  
   // Wallet de GSprout
-  const secret = [
-    240, 30, 163, 69, 255, 207, 141, 102, 238, 126, 98, 121, 197, 79, 240, 125,
-    166, 61, 253, 103, 179, 42, 89, 224, 85, 212, 2, 62, 160, 61, 220, 181, 48,
-    143, 248, 208, 91, 161, 25, 173, 27, 93, 116, 204, 40, 174, 134, 59, 107,
-    39, 179, 38, 142, 20, 116, 91, 29, 51, 21, 164, 112, 49, 227, 0,
-  ].slice(0, 32);
-
+  const secret = process.env.SECRET.slice(0, 32);
   // Crea el keypair
   let seed = Uint8Array.from(secret);
   const myKeyPair = Keypair.fromSeed(seed);
@@ -52,7 +47,6 @@ const mintNFT = async (req, res, next) => {
   );
 
   // Imprime la dirección del NFT
-  console.log(nft.mint.address.toBase58());
 
   createGame({
     name: req.body.name,
@@ -61,7 +55,7 @@ const mintNFT = async (req, res, next) => {
     fileUrl: `${nft.mint.address.toBase58()}`,
   });
 
-  res.send(nft.mint.address.toBase58());
+  res.sendStatus(200);
 };
 
 module.exports = { mintNFT };
