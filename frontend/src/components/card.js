@@ -1,3 +1,4 @@
+import { LAMPORTS_PER_SOL } from '@solana/web3.js'; 
 const card = async (product) => {
     const template = `<a href="${product.id}"><div class="card">
         <img class="card-img-top" src="${product.imgUrl}" alt="Card image cap">

@@ -12,7 +12,7 @@ import signup from "./components/signup";
 import gamePage from "./components/gamePage";
 import main from "./components/main";
 import searchPage from "./components/searchPage";
-
+import upload from './components/upload';
 const app = async () => {
     $("#header").html(header());
     if (window.location.pathname === "/") {

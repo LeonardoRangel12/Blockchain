@@ -28,7 +28,7 @@ const mintNFT = async (req, res, next) => {
       bundlrStorage({
         address: "https://devnet.bundlr.network",
         providerUrl: "https://api.devnet.solana.com",
-        timeout: 60000,
+        timeout: 120000,
       })
     );
 

@@ -2,6 +2,7 @@ import "../styles/search.css";
 import $ from "jquery";
 import axios from "axios";
 import product from "./product";
+import { backendEndpoint } from "../global";
 const searchPage = async () => {
   const searchPage = `    
   <div class="d-flex justify-content-center align-items-center vh-100">
@@ -25,6 +26,9 @@ const searchPage = async () => {
         </form>
     </div>
     <div class="container">
+    <div class="row" id = "">
+    
+    </div>
     <h2 class="text-white">Lo mas vendido</h2>
     <div class="card-group">
       <div class="card">
@@ -74,7 +78,9 @@ $("#content").on("click", "#search", async () => {
   $("form").addClass("was-validated");
   const searchText = $("#searchInput").val();
   if(searchText === '') return;
-  // const searchResults = await axios.get(`/api/search${searchText}`);
+  const res = await axios.get(backendEndpoint + `/api/search${searchText}`);
+
+  // const res.data.forEach(async (element) => {}
 });
 
 export default searchPage;
