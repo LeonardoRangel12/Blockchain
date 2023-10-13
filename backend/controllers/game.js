@@ -1,4 +1,5 @@
 const GameService = require("../services/game");
+const Game = require("../models/game");
 
 exports.getGames = async (req, res) => {
   try {
@@ -25,6 +26,28 @@ exports.getGameById = async (req, res) => {
     res.status(404).json({
       message: "Game was not found",
     });
+  }
+};
+
+exports.getGameBySearch = async (req, res) => {
+  const { searchInput } = req.body;
+  if (!searchInput) {
+    return res.status(400).json({ error: 'Please provide a search input.' });
+  }
+
+  // Split the searchInput into individual keywords
+  const keywords = searchInput.split(' ');
+
+  try {
+    const searchResults = await Game.find({ name: { $in: keywords } });
+
+    if (searchResults.length === 0) {
+      return res.json({ message: 'No games found for the provided keywords.' });
+    }
+
+    res.json(searchResults);
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while searching for games.' });
   }
 };
 
