@@ -22,11 +22,11 @@ const app = async () => {
     else if (window.location.pathname === "/Landing" ) {
         $("#content").html(await landing());
     }
-    else if (window.location.pathname === "/login" ) {
-        $("#content").html(await login());
-    }
     else if (window.location.pathname === "/signup" ) {
         $("#content").html(await signup());
+    }
+    else if (window.location.pathname === "/login" ) {
+        $("#content").html(await login());
     }
     else if (window.location.pathname === "/subir" ) {
         $("#content").html(await subir());
