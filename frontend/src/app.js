@@ -11,6 +11,7 @@ import login from "./components/login";
 import signup from "./components/signup";
 import gamePage from "./components/gamePage";
 import landing from "./components/landingPage";
+import searchPage from "./components/searchPage";
 
 const app = async () => {
     $("#header").html(header());
