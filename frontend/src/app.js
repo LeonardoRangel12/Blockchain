@@ -40,6 +40,9 @@ const app = async () => {
     else if (window.location.pathname === "/subir" ) {
         $("#content").html(await subir());
     }
+    else if(window.location.pathname === "/upload"){
+        $("#content").html(await upload());
+    }
     else{
         $("#content").html("404 Not Found");
     }
