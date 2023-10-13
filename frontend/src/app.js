@@ -7,6 +7,7 @@ import header from "./components/header";
 import footer from "./components/footer";
 import user from "./components/user";
 import {connect} from "./components/connect";
+import login from "./components/login";
 
 
 const app = async () => {
@@ -20,6 +21,9 @@ const app = async () => {
     }
     else if (window.location.pathname === "/Landing" ) {
         $("#content").html(await landing());
+    }
+    else if (window.location.pathname === "/login" ) {
+        $("#content").html(await login());
     }
     else if (window.location.pathname === "/subir" ) {
         $("#content").html(await subir());
