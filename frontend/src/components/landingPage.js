@@ -24,7 +24,7 @@ const landingPage = async () => {
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="/main">Main</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/singup">Sign up</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/signup">Sign up</a></li>
                         <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
                     </ul>
                 </div>
