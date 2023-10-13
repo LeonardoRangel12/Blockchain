@@ -2,13 +2,10 @@ import $ from "jquery";
 import {connectWallet, loginWallet} from "./wallet";
 import transfer from "./transfer";
 
-
 const connect = async () => {
-    
     const res = await loginWallet();
-    // Si ya se conectó al wallet, salta a la ventana de transferencia
     if(res) {
-        $("#content").html(await transfer(res));
+        $("#content").html(await transfer());
         return
     }
     const template = `<div class = "row">
@@ -18,14 +15,11 @@ const connect = async () => {
     return template;
 }
 
-// Cuando se presiona conectar, se trata de conectar a la wallet
 $("#content").on("click", "#connect", async () => {
-    
     const publicKey = await connectWallet();
-    // Si no se puede da error
     if(!publicKey) alert("Algo salió mal");
 
-    else $("#content").html(await transfer(publicKey));
+    else $("#content").html(await transfer());
 });
 
 export {connect};

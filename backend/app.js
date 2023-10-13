@@ -27,5 +27,4 @@ app.use('/auth', authRouter);
 app.use("/game", gameRouter);
 app.use('/user', usersRouter);
 app.use('/wallet', walletRouter);
-app.use("/ipfs", ipfsRouter);
 module.exports = app;

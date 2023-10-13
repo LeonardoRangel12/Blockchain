@@ -8,7 +8,6 @@ import header from "./components/header";
 import footer from "./components/footer";
 import user from "./components/user";
 import {connect} from "./components/connect";
-import subir from "./components/subir";
 
 
 const app = async () => {
