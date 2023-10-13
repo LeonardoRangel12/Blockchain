@@ -33,6 +33,9 @@ const app = async () => {
     else if (window.location.pathname === "/login" ) {
         $("#content").html(await login());
     }
+    else if (window.location.pathname === "/searchPage" ) {
+        $("#content").html(await searchPage());
+    }
     else if (window.location.pathname === "/subir" ) {
         $("#content").html(await subir());
     }
