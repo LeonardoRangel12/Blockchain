@@ -8,7 +8,7 @@ const header = () => {
       <ul class="nav nav-pills">
         <li class="nav-item"><a class="nav-link active" aria-current="page">Home</a></li>
         <li class="nav-item"><a href="/transferir" class="nav-link">Transferir</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+        <li class="nav-item"><a href="/upload" class="nav-link">Subir imagen</a></li>
         <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
         <li class="nav-item"><a href="#" class="nav-link">About</a></li>
       </ul>

@@ -9,7 +9,10 @@ var walletRouter = require('./routes/wallet');
 var ipfsRouter = require('./routes/ipfs');
 var authRouter = require('./routes/auth');
 var gameRouter = require('./routes/game');
-const port = 3001;
+const crypto = require('crypto');
+const Moralis = require("moralis").default;
+const dotenv = require('dotenv');
+dotenv.config();
 
 var app = express();
 app.use(cors({
@@ -22,9 +25,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const startMoralis = async() => {
+    const moralisApi = "Oho7YI5eB5hce2jo3YqNBl9r6V0DFM4GEqFKDJCz8e19D6nXVm9d7tV2S2gBPiHW";
+    await Moralis.start({
+        apiKey : moralisApi,
+    })
+
+}
+startMoralis();
+
+
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use("/game", gameRouter);
 app.use('/user', usersRouter);
 app.use('/wallet', walletRouter);
+app.use('/ipfs', ipfsRouter);
 module.exports = app;
