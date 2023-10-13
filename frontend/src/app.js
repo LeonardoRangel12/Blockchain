@@ -9,7 +9,6 @@ import footer from "./components/footer";
 import user from "./components/user";
 import {connect} from "./components/connect";
 import subir from "./components/subir";
-import landing from "./components/landingPage";
 
 
 const app = async () => {
