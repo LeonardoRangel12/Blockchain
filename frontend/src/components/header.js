@@ -13,6 +13,7 @@ const header = () => {
           style="margin-top: 2px;"
         />
       </a>
+<<<<<<< HEAD
 
       <!-- Search form -->
       <form class="input-group w-auto my-auto d-none d-sm-flex">
@@ -84,6 +85,16 @@ const header = () => {
   </div>
 </nav>
 <!-- Navbar -->`;
+=======
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a class="nav-link active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="/transferir" class="nav-link">Transferir</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+      </ul>
+    </header>`;
+>>>>>>> parent of 7806592... Crea NFT
 
   return template;
 };

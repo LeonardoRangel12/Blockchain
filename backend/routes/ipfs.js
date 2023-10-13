@@ -5,8 +5,7 @@ const storage = multer.memoryStorage();
 const upload = multer({storage: storage});
 const ipfs = require("../controllers/ipfs");
 const { createConnection } = require('../middleware/solana');
-const { mintNFT } = require('../controllers/nft');
 /* GET home page. */
-router.post('/upload', upload.single('file'), createConnection, ipfs.uploadFile, ipfs.addMetadata, mintNFT);
+router.post('/upload', upload.single('file'), createConnection, ipfs.uploadFile, ipfs.addMetadata, ipfs.mintNFT);
 
 module.exports = router;
