@@ -8,10 +8,6 @@ const userSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         auto: true,
       },
-    pubKey: {
-        type: String,
-        required: [true, "Public Key not retrieved."],
-    },
     imageUrl: {
         type: String,
         required: [true, "image required."] ,

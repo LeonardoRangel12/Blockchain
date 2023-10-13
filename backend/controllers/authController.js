@@ -8,16 +8,16 @@ const handleErrors = (err) => {
     let errors = {email: '', password: ''};
 
     if(err.message === 'incorrect email'){
-        errors.email = "El email ingresado no está registrado";
+        errors.email = "Email not registered";
     }
 
     if(err.message === 'incorrect password'){
-        errors.email = "La contraseña es incorrecta";
+        errors.email = "Password incorrect";
     }
 
     if(err.code === 11000)
     {
-        errors.email = 'Ya hay una cuenta con ese email';
+        errors.email = 'There\'s already an account with this email';
         return errors;
     }
     if( err.message.includes('user validation failed'))
@@ -36,7 +36,7 @@ const createToken = (id) => {
 }
 
 module.exports.signup_post = async (req, res) => {
-    const { email, password,  } = req.body;
+    const { imageUrl, country, name, lastname, username, email, password,  } = req.body;
     try{
         const user = await User.create({ email,password});
         const token = createToken(user._id);
@@ -50,7 +50,7 @@ module.exports.signup_post = async (req, res) => {
 };
 
 module.exports.login_post = async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password} = req.body;
     try{
         const user = await User.login(email,password);
         const token = createToken(user._id);

@@ -27,6 +27,10 @@ const gameSchema = new mongoose.Schema({
         type: String,
         required: [true, "File required."] ,
     },
+    imageUrl: {
+        type: String,
+        required: [true, "Image required."] ,
+    },
     // categories:
     // {
     //     type:[String],
