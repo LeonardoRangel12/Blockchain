@@ -1,4 +1,4 @@
-const landing = () => {
+const main = () => {
     const template = `
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -118,4 +118,4 @@ const landing = () => {
   return template;
 }
 
-export default landing;
+export default main;

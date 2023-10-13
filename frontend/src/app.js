@@ -10,7 +10,7 @@ import {connect} from "./components/connect";
 import login from "./components/login";
 import signup from "./components/signup";
 import gamePage from "./components/gamePage";
-import landing from "./components/landingPage";
+import main from "./components/main";
 import searchPage from "./components/searchPage";
 
 const app = async () => {
@@ -22,8 +22,8 @@ const app = async () => {
     else if (window.location.pathname === "/transferir" ) {
         $("#content").html(await connect());
     }
-    else if (window.location.pathname === "/landing" ) {
-        $("#content").html(await landing());
+    else if (window.location.pathname === "/main" ) {
+        $("#content").html(await main());
     }
     else if (window.location.pathname === "/gamePage" ) {
         $("#content").html(await gamePage());
