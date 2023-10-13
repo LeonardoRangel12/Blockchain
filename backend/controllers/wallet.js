@@ -59,4 +59,4 @@ const buy = async(req,res,next) => {
     // const secret 
 }
 
-module.exports = {transfer, connect, disconnect, login}
+module.exports = {transfer, connect, disconnect, login, buy}
