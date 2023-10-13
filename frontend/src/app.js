@@ -8,6 +8,7 @@ import footer from "./components/footer";
 import user from "./components/user";
 import {connect} from "./components/connect";
 import login from "./components/login";
+import signup from "./components/signup";
 
 
 const app = async () => {
