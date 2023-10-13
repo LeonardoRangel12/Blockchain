@@ -1,0 +1,16 @@
+@import '../helper';
+
+@mixin white-space($prefix, $variants: (), $separator: '_') {
+  $map-values: (
+    normal: normal,
+    no-wrap: nowrap,
+    pre: pre,
+    pre-line: pre-line,
+    pre-wrap: pre-wrap,
+  );
+  $map-props: (
+    default: white-space,
+  );
+
+  @include style($prefix, whitespace, $map-values, $map-props, $variants, $separator);
+}

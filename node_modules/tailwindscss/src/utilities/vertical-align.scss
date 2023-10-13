@@ -1,0 +1,16 @@
+@import '../helper';
+
+@mixin vertical-align($prefix, $variants: (), $separator: '_') {
+  $map-values: (
+    baseline: baseline,
+    top: top,
+    middle: middle,
+    bottom: bottom,
+    text-top: text-top,
+    text-bottom: text-bottom,
+  );
+  $map-props: (
+    default: vertical-align,
+  );
+  @include style($prefix, align, $map-values, $map-props, $variants, $separator);
+}

@@ -1,0 +1,16 @@
+@import '../helper';
+
+@mixin justify-content($prefix, $variants: (), $separator: '_') {
+  $map-values: (
+    start: flex-start,
+    center: center,
+    end: flex-end,
+    between: space-between,
+    around: space-around,
+  );
+  $map-props: (
+    default: justify-content,
+  );
+
+  @include style($prefix, justify, $map-values, $map-props, $variants, $separator);
+}

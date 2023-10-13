@@ -1,0 +1,24 @@
+@import "../helper";
+
+@mixin object-fit($prefix, $variants: (), $separator: '_') {
+  $map-values: (
+    contain: contain,
+    cover: cover,
+    fill: fill,
+    none: none,
+    scale-down: scale-down,
+  );
+  $map-props: (
+    default: object-fit,
+  );
+
+  @include style($prefix, object, $map-values, $map-props, $variants, $separator);
+}
+
+@mixin object-position($prefix, $map-values, $variants: (), $separator: '_') {
+  $map-props: (
+    default: object-position,
+  );
+
+  @include style($prefix, object, $map-values, $map-props, $variants, $separator);
+}

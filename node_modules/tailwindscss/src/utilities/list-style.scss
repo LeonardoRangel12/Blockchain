@@ -1,0 +1,20 @@
+@import "../helper";
+
+@mixin list-style-type($prefix, $map-values, $variants: (), $separator: '_') {
+  $map-props: (
+    default: list-style-type,
+  );
+  @include style($prefix, list, $map-values, $map-props, $variants, $separator);
+}
+
+@mixin list-style-position($prefix, $variants: (), $separator: '_') {
+  $map-values: (
+    inside: inside,
+    outside: outside,
+  );
+  $map-props: (
+    default: list-style-position,
+  );
+
+  @include style($prefix, list, $map-values, $map-props, $variants, $separator);
+}

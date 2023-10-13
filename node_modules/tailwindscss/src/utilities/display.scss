@@ -1,0 +1,20 @@
+@import '../helper';
+
+@mixin display($prefix, $variants: (), $separator: '_') {
+  $map-values: (
+    block: block,
+    inline-block: inline-block,
+    inline: inline,
+    flex: flex,
+    inline-flex: inline-flex,
+    table: table,
+    table-row: table-row,
+    table-cell: table-cell,
+    hidden: none,
+  );
+  $map-props: (
+    default: display,
+  );
+
+  @include style($prefix, '', $map-values, $map-props, $variants, $separator);
+}

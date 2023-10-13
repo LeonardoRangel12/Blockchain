@@ -1,0 +1,30 @@
+@import "../helper";
+
+@mixin position($prefix, $variants: (), $separator: '_') {
+  $map-values: (
+    static: static,
+    fixed: fixed,
+    absolute: absolute,
+    relative: relative,
+    sticky: sticky,
+  );
+  $map-props: (
+    default: position,
+  );
+
+  @include style($prefix, '', $map-values, $map-props, $variants, $separator);
+}
+
+@mixin inset($prefix, $map-values, $variants: (), $separator: '_') {
+  $map-props: (
+    inset: top right bottom left,
+    inset-x: right left,
+    inset-y: top bottom,
+    top: top,
+    right: right,
+    bottom: bottom,
+    left: left,
+  );
+
+  @include style($prefix, '', $map-values, $map-props, $variants, $separator);
+}
