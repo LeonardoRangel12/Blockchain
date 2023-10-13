@@ -13,6 +13,7 @@ const app = async () => {
     $("#header").html(header());
     if (window.location.pathname === "/") {
         $("#content").html(await user());    
+        
     }
     else if (window.location.pathname === "/transferir" ) {
         $("#content").html(await connect());
