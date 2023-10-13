@@ -56,7 +56,7 @@ const login = async(req,res,next) => {
 }
 
 const buy = async(req,res,next) => {
-    const secret 
+    // const secret 
 }
 
 module.exports = {transfer, connect, disconnect, login}
