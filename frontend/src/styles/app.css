@@ -12,6 +12,3 @@ html{
 body{
     background-color: var(--principal);
 }
-.navbar{
-   color: var(--principalClaro);
-}
