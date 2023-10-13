@@ -7,18 +7,35 @@ import header from "./components/header";
 import footer from "./components/footer";
 import user from "./components/user";
 import {connect} from "./components/connect";
-import upload from "./components/upload";
+import login from "./components/login";
+import signup from "./components/signup";
+import gamePage from "./components/gamePage";
+import main from "./components/main";
+import searchPage from "./components/searchPage";
 
 const app = async () => {
     $("#header").html(header());
     if (window.location.pathname === "/") {
         $("#content").html(await user());    
+        
     }
     else if (window.location.pathname === "/transferir" ) {
         $("#content").html(await connect());
     }
-    else if (window.location.pathname === "/Landing" ) {
-        $("#content").html(await landing());
+    else if (window.location.pathname === "/main" ) {
+        $("#content").html(await main());
+    }
+    else if (window.location.pathname === "/gamePage" ) {
+        $("#content").html(await gamePage());
+    }
+    else if (window.location.pathname === "/signup" ) {
+        $("#content").html(await signup());
+    }
+    else if (window.location.pathname === "/login" ) {
+        $("#content").html(await login());
+    }
+    else if (window.location.pathname === "/searchPage" ) {
+        $("#content").html(await searchPage());
     }
     else if (window.location.pathname === "/subir" ) {
         $("#content").html(await subir());
@@ -29,7 +46,7 @@ const app = async () => {
     else{
         $("#content").html("404 Not Found");
     }
-    $("#footer").html(footer());
+    $("#footer").html(await footer());
 };
 
 // Init app

@@ -1,0 +1,14 @@
+:root{
+    --principal: #04364A;
+    --principalClaro: #176B87;
+    --secundario: #64CCC5;
+    --secundarioclaro: #DAFFFB;
+    --negro: #000000;
+    --blanco: #ffffff;
+}
+html{
+    
+}
+body{
+    background-color: var(--principal);
+}
