@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "../node_modules/tailwindcss/base.css";
 import "./styles/app.css";
 import $ from "jquery";
 
@@ -17,6 +18,9 @@ const app = async () => {
     }
     else if (window.location.pathname === "/transferir" ) {
         $("#content").html(await connect());
+    }
+    else if (window.location.pathname === "/Landing" ) {
+        $("#content").html(await landing());
     }
     else if (window.location.pathname === "/subir" ) {
         $("#content").html(await subir());
