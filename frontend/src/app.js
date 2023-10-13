@@ -8,6 +8,7 @@ import footer from "./components/footer";
 import user from "./components/user";
 import {connect} from "./components/connect";
 import subir from "./components/subir";
+var walletRouter = require('./frontend/tailwind.config.js');
 
 
 const app = async () => {
