@@ -4,13 +4,11 @@ const {
   bundlrStorage,
 } = require("@metaplex-foundation/js");
 const {
-  Connection,
-  clusterApiUrl,
   Keypair,
   LAMPORTS_PER_SOL,
 } = require("@solana/web3.js");
 
-const crypto = require("crypto");
+const {createGame} = require("../services/game");
 
 const mintNFT = async (req, res, next) => {
   // Wallet de GSprout
@@ -20,10 +18,15 @@ const mintNFT = async (req, res, next) => {
     143, 248, 208, 91, 161, 25, 173, 27, 93, 116, 204, 40, 174, 134, 59, 107,
     39, 179, 38, 142, 20, 116, 91, 29, 51, 21, 164, 112, 49, 227, 0,
   ].slice(0, 32);
+
+  // Crea el keypair
   let seed = Uint8Array.from(secret);
   const myKeyPair = Keypair.fromSeed(seed);
 
+  // Obtiene la conexión
   const connection = res.locals.connection;
+
+  // Crea el cliente de Metaplex
   const metaplex = Metaplex.make(connection)
     .use(keypairIdentity(myKeyPair))
     .use(
@@ -34,43 +37,31 @@ const mintNFT = async (req, res, next) => {
       })
     );
 
+  // Obtiene el metadataCid subido anteriormente
   const metadataCid = res.locals.metadataCid;
 
+
+  // Crea el NFT
   const { nft } = await metaplex.nfts().create(
     {
       uri: metadataCid,
-      name: "My NFT",
+      name: req.body.name,
       sellerFeeBasisPoints: 0,
     },
     { commitment: "finalized" }
   );
 
+  // Imprime la dirección del NFT
   console.log(nft.mint.address.toBase58());
+
+  createGame({
+    name: req.body.name,
+    description: req.body.description,
+    price: req.body.price * LAMPORTS_PER_SOL,
+    fileUrl: `${nft.mint.address.toBase58()}`,
+  });
+
   res.send(nft.mint.address.toBase58());
 };
-// // Configurar Candy Machine
-// const candyMachine = new CandyMachineV2({
-//   connection,
-//   wallet: wallet,
-//   cndyMachineConfig: {
-//     authority: publicKey,
-//     items: {
-//       [metadataCid]: {
-//         name: "NFT",
-//         description: "My token chido",
-//         price: 0.1,
-//         fileUrl: `https://${metadataCid}.ipfs.dweb.link/metadata.json`,
-//       },
-//     },
-//   },
-// });
-
-// const mintTxId = await candyMachine.mintNFT();
-
-// // Obtener NFT mintado
-// const mintInfo = await candyMachine.getMintInfo(mintTxId);
-// const nft = await Metadata.load(connection, mintInfo.mint);
-
-// console.log("NFT minteado:", nft);
 
 module.exports = { mintNFT };

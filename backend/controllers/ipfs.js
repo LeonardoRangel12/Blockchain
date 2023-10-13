@@ -32,10 +32,10 @@ const addMetadata = async (req, res, next) => {
   const imageCid = res.locals.imageCid;
 
   const metadata = {
-    name: "NFT",
+    name: req.body.name,
     // symbol: "NB",
-    price: 0.1 * LAMPORTS_PER_SOL,
-    description: "My token chido",
+    price: req.body.price * LAMPORTS_PER_SOL,
+    description: req.body.description,
     fileUrl: `https://${imageCid}.ipfs.dweb.link/${name}`,
   };
   // Crea el buffer del JSON
