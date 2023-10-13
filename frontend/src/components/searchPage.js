@@ -1,4 +1,7 @@
 import "../styles/search.css";
+import $ from "jquery";
+import axios from "axios";
+import product from "./product";
 const searchPage = async () => {
   const searchPage = `    
   <div class="d-flex justify-content-center align-items-center vh-100">
@@ -10,12 +13,13 @@ const searchPage = async () => {
                 <div class="col">
                     <input
                         class="form-control form-control-lg form-control-borderless"
-                        type="search"
+                        type="text"
+                        id="searchInput"
                         placeholder="Search topics or keywords"
                     />
                 </div>
                 <div class="col-auto">
-                    <button class="btn btn-lg btn-success" type="submit">Search</button>
+                    <button class="btn btn-lg btn-success" id="search" type="button">Search</button>
                 </div>
             </div>
         </form>
@@ -65,5 +69,12 @@ const searchPage = async () => {
 
   return searchPage;
 };
+
+$("#content").on("click", "#search", async () => {
+  $("form").addClass("was-validated");
+  const searchText = $("#searchInput").val();
+  if(searchText === '') return;
+  // const searchResults = await axios.get(`/api/search${searchText}`);
+});
 
 export default searchPage;

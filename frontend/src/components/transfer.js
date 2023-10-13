@@ -2,6 +2,7 @@ import $ from 'jquery';
 import axios from 'axios';
 import {connect} from './connect';
 import {disconnectWallet} from './wallet';
+import backendEndpoint from '../global';
 const transfer = async() =>{
 
     const template = `        
@@ -43,7 +44,7 @@ $("form").on("submit", async (event) => {
     event.preventDefault();
     const account = $("#accountInput").val();
     const quantity = $("#accountQuantity").val();
-    const res = await axios.post("http://localhost:3001/transfer", {
+    const res = await axios.post(backendEndpoint + "/transfer", {
         account: account,
         quantity: quantity
     });

@@ -1,11 +1,12 @@
 import axios from "axios";
+import backendEndpoint from "../global";
 const user = async () => {
     /*
         Obtiene datos de un usuario aleatorio
 
         Regresa la plantilla de un usuario
     */
-    const  res = await axios.get("http://localhost:3001/user/random");
+    const  res = await axios.get(backendEndpoint + "/user/random");
     const data = res.data;
     
     const template = 

@@ -1,15 +1,15 @@
+import product from "./product";
 const buy = async() => {
 
     var template = `<div class="row">`;
 
-    const res = await axios.get("http://localhost:3001/game");
+    const res = await axios.get(backendEndpoint + "/game");
     const games = res.data.games;
-    games.forEach(element => {
-        template = template + `
-        <div class="col-md-4">
-            ${games.name} ${games.price} ${games.description}
-        `;
+    games.forEach(async element => {
+        template = template  + await product(element);
     });
+
+    return template;
 }
 
 export default buy;

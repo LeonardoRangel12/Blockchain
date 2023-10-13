@@ -22,7 +22,7 @@ const connectWallet = async () => {
     const {publicKey} = await phantom.connect();
 
     // Crea la cookie
-    const res = await axios.post("http://localhost:3001/wallet/connect", {publicKey}, {"withCredentials": true});
+    const res = await axios.post(backendEndpoint + "/wallet/connect", {publicKey}, {"withCredentials": true});
     if (res.status === 200) return publicKey;
     
     return false;
@@ -31,13 +31,13 @@ const connectWallet = async () => {
 // Función para desconectar la wallet
 const disconnectWallet = async () => {
 
-    const res = await axios.get("http://localhost:3001/wallet/disconnect" , {"withCredentials": true});
+    const res = await axios.get(backendEndpoint + "/wallet/disconnect" , {"withCredentials": true});
     if (res.status === 200) return true;
     return false;
 }
 
 const loginWallet = async () => {
-    const res = await axios.get("http://localhost:3001/wallet/login", {"withCredentials": true});
+    const res = await axios.get(backendEndpoint + "/wallet/login", {"withCredentials": true});
     if(!res.data) return false;
     return res.data;
     

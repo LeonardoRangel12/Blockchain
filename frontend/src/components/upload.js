@@ -1,5 +1,6 @@
 import $ from "jquery";
 import axios from "axios";
+import backendEndpoint from "../global";
 const upload = async () => {
     const template = `
     <form>
@@ -23,7 +24,7 @@ $("#content").on("click", "#submit",async () => {
     formData.append("description", description);
     formData.append("price", price);
     formData.append("file", file);
-    const res = await axios.post("http://localhost:3001/ipfs/upload", formData, {withCredentials: true });
+    const res = await axios.post(backendEndpoint + "/ipfs/upload", formData, {withCredentials: true });
     console.log(res);
 });
 

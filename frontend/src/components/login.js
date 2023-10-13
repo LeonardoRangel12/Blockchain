@@ -1,3 +1,5 @@
+import $ from "jquery";
+import axios from "axios";
 const login = async () => {
     const login = `
     <!-- Section: Login Design Block -->
@@ -24,17 +26,19 @@ const login = async () => {
                 ">
               <div class="card-body p-5 shadow-5 text-center">
                 <h2 class="fw-bold mb-5">Log in</h2>
-                <form>
+                <form class='needs-validation'>
                   <!-- Email input -->
                   <div class="form-outline mb-4">
-                    <input type="email" id="form3Example3" class="form-control" />
-                    <label class="form-label" for="form3Example3">Email address</label>
+                    <input type="email" id="emailInput" class="form-control" />
+                    <label class="form-label" for="emailInput">Email address</label>
+                    <div class="invalid-input">Please fill the email</div>
                   </div>
     
                   <!-- Password input -->
                   <div class="form-outline mb-4">
-                    <input type="password" id="form3Example4" class="form-control" />
-                    <label class="form-label" for="form3Example4">Password</label>
+                    <input type="password" id="passwordInput" class="form-control" />
+                    <label class="form-label" for="passwordInput">Password</label>
+                    <div class="invalid-input">Please fill the password</div>
                   </div>
     
                   <!-- Checkbox -->
@@ -46,10 +50,11 @@ const login = async () => {
                   </div>
     
                   <!-- Submit button -->
-                  <button type="submit" class="btn btn-primary btn-block mb-4">
+                  <button id = 'login' type="button" class="btn btn-primary btn-block mb-4">
                     Log in
                   </button>
                 </form>
+                <h5>Already have an account? <a href="/signup">Sign up</a></h5>
               </div>
             </div>
           </div>
@@ -68,4 +73,23 @@ const login = async () => {
   return login;
 }
 
+$("#content").on("click", "#login", async (e) => {
+  e.preventDefault();
+  $("form").addClass("was-validated");
+  const email = $("#emailInput").val();
+  const password = $("#passwordInput").val();
+  if(email == '') return
+  if(password == '') return;
+
+  const res = await axios.post("http://localhost:3001/auth/login", {
+    email: email,
+    password: password,
+  });
+  console.log(res);
+  if (res.status === 200) {
+    window.location.href = "/";
+  } else {
+    window.location.href = "/login";
+  }
+});
 export default login;
