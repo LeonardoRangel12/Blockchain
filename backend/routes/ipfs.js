@@ -6,6 +6,6 @@ const upload = multer({storage: storage});
 const ipfs = require("../controllers/ipfs");
 const { createConnection } = require('../middleware/solana');
 /* GET home page. */
-router.post('/upload', upload.single('file'), createConnection, ipfs.uploadFile, ipfs.createNFT);
+router.post('/upload', upload.single('file'), createConnection, ipfs.uploadFile, ipfs.addMetadata, ipfs.mintNFT);
 
 module.exports = router;

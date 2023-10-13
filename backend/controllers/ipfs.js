@@ -1,5 +1,7 @@
 const { Web3Storage } = require("web3.storage");
-const { Metadata, createMetadataV2, createMasterEditionV3, DataV2 } = require("@metaplex-foundation/js");
+const Moralis = require("moralis")
+const { MintV2  } = require('@metaplex-foundation/mpl-candy-machine');
+
 const { PublicKey, Keypair } = require("@solana/web3.js");
 
 // Regresa el token de web3.storage
@@ -19,49 +21,70 @@ const uploadFile = async (req, res, next) => {
   // Separa el nombre del archivo y la extensión
   const fileName = file.originalname.split(".")[0];
   const extension = file.originalname.split(".")[1];
+  res.locals.name = "nft" + fileName + Date.now().toString() + "." + extension
+  const name = res.locals.name;
   const files = [
     new File(
       [file.buffer],
-      "nft" + fileName + Date.now().toString() + "." + extension
+      name,
     ),
   ];
-
-  // Subimos el archivo a IPFS
-  const cid = await client.put(files);
-  res.locals.cid = cid;
-  next();
+    // Subimos el archivo a IPFS
+    res.locals.imageCid = await client.put(files);
+    next();
 };
 
-const createNFT = async (req, res, next) => {
-  const connection = res.locals.connection;
-  const wallet = res.locals.publicKey;
-  // Es la llave publica del NFT
-  const mintKey = Keypair.generate();
-  const metadata = new Metadata({
-    name: 'NFT Name', 
-    symbol: 'NFT', 
-    uri: 'ipfs://' + res.locals.cid, // URI del metadata
-    sellerFeeBasisPoints: 500, 
-    creators: [
-      { address: wallet, verified: true, share: 100 },
-    ],
-  })
 
-  // Construir transacción
-  const txn = new createMetadataV2(
-    {feePayer : wallet.publicKey},
-    {
-      metadata,
-      updateAuthority: wallet.publicKey,
-      mintKey: mintKey.publicKey,
-      mintAuthority: wallet.publicKey,
+const addMetadata = async (req, res, next) => {
+    // Crea conexión
+    const client = await makeStorageClient();
+    const name = res.locals.name;
+    const imageCid = res.locals.imageCid;
+
+    const metadata = {
+      name: "NFT",
+      // symbol: "NB",
+      price: 0.1,
+      description: "My token chido",
+      fileUrl: `https://${imageCid}.ipfs.dweb.link/${name}`,
     }
-  );
+    // Crea el buffer del JSON
+    const buffer = Buffer.from(JSON.stringify(metadata));
+    const metadataFile = new File([buffer], "metadata.json");
+    // Sube el metadata al archivo subido
+    const metadataCid = await client.put([metadataFile]);
+    res.locals.metadataCid = metadataCid;
+    console.log(`https://${metadataCid}.ipfs.dweb.link`);
 
-  await wallet.signTransaction(txn);
-  await connection.sendRawTransaction(txn.serialize());
-  await connection.confirmTransaction(txn.signature);
-  res.send(200);
+    next();
+}
+
+const mintNFT = async (req, res, next) => {
+  const connection = res.locals.connection;
+  const metadataCid = res.locals.metadataCid;
+  const mint = await mintV2({
+    connection,
+    uri: `https://${metadataCid}.ipfs.dweb.link/metadata.json`,
+    name: "NFT",
+  });
+
+  const NFT = Moralis.Object.extend("NFT");
+
+  const nft = new NFT();
+
+  nft.set("name", "NFT");
+  nft.set('tokeAddress', mint.pubkey);
+  nft.set('tokenId', mint.pubKey);
+  nft.set('tokenUri', metadataCid);
+  nft.set('confirmed', false);
+
+  await nft.save();
+
+  console.log(await NFT.get(mint.pubKey));
+
+  nft.set('confirmed', true);
+
+  await nft.save();
 };
 
-module.exports = { uploadFile, createNFT };
+module.exports = { uploadFile, addMetadata, mintNFT };
