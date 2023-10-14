@@ -1,4 +1,4 @@
-This is GSprout, a software made to buy NFT's  videogames licenses and own, share o sell them
+This is GSprout, a software made to buy NFT's  videogames licenses and own, share or sell them
 
 # This was made after the hackathon submit
 We had an issue when we first uploaded this proyect, some Github commit issues.
