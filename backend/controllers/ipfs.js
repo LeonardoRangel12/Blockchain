@@ -59,23 +59,6 @@ const addMetadata = async (req, res, next) => {
     next();
 }
 
-<<<<<<< HEAD
-  const metadata = {
-    name: req.body.name,
-    // symbol: "NB",
-    price: req.body.price * LAMPORTS_PER_SOL,
-    description: req.body.description,
-    fileUrl: `https://${imageCid}.ipfs.dweb.link/${name}`,
-  };
-  // Crea el buffer del JSON
-  const buffer = Buffer.from(JSON.stringify(metadata));
-  const metadataFile = new File([buffer], "metadata.json");
-  // Sube el metadata al archivo subido
-  const metadataCid = await client.put([metadataFile]);
-  res.locals.metadataCid = metadataCid;
-
-  next();
-=======
 const mintNFT = async (req, res, next) => {
   const connection = res.locals.connection;
   const metadataCid = res.locals.metadataCid;
@@ -102,7 +85,6 @@ const mintNFT = async (req, res, next) => {
   nft.set('confirmed', true);
 
   await nft.save();
->>>>>>> parent of 7806592... Crea NFT
 };
 
 module.exports = { uploadFile, addMetadata, mintNFT };

@@ -22,4 +22,4 @@ $("#content").on("click", "#connect", async () => {
     else $("#content").html(await transfer());
 });
 
-export {connect};
+export default connect;

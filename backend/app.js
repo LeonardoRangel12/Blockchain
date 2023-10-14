@@ -9,6 +9,7 @@ var walletRouter = require('./routes/wallet');
 var ipfsRouter = require('./routes/ipfs');
 var authRouter = require('./routes/auth');
 var gameRouter = require('./routes/game');
+const Moralis = require("moralis").default;
 const port = 3001;
 
 var app = express();
@@ -22,7 +23,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-<<<<<<< HEAD
 const startMoralis = async() => {
     const moralisApi = "Oho7YI5eB5hce2jo3YqNBl9r6V0DFM4GEqFKDJCz8e19D6nXVm9d7tV2S2gBPiHW";
     await Moralis.start({
@@ -32,8 +32,6 @@ const startMoralis = async() => {
 }
 startMoralis();
 
-=======
->>>>>>> parent of 7806592... Crea NFT
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use("/game", gameRouter);
