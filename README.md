@@ -1,19 +1,6 @@
-# Blockchain
-Para poderlo ejecutar tienen que instalar node.js
-Antes de ejecutar todo tienen que insertar en frontend y backend el comando:
-```console
-npm install
-```
-Para que se instalen todos los paquetes necesarios
-Los siguientes comandos de ejecución son con WSL
-## Para ejecutar frontend
-```console
-npm run dev
-```
+This is GSprout, a software made to buy NFT's  videogames licenses and own, share o sell them
 
-## Para ejecutar backend
-```console
-npm start 
-```
-
-Los dos tienen que estar simultaneamente
+# This was made after the hackathon submit
+We had an issue when we first uploaded this proyect, some Github commit issues.
+That happend 1 hour before the end of the event.
+We're sorry if this is out of rules; we just wanted you to show how hard we worked for this proyect.
