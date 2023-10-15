@@ -33,7 +33,7 @@ const upload = async () => {
             <div class="mb-3">
                 <input type="button" class="form-control" id="submit" value="Submit">
             </div>
-            <div class="spinner-border text-secondary" role="status" hidden>
+            <div class=" m-3 visually-hidden d-flex spinner-border text-secondary" id = 'spinner' role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
         </form>
@@ -67,9 +67,9 @@ $("#content").on("click", "#submit", async (e) => {
     
 
     const url = backendEndpoint + "/ipfs/upload";
-    $(".spinner-border").attr("hidden", "false");
+    $("#spinner").removeClass("visually-hidden");
     const res = await axios.post(url, formData, {withCredentials: true});
-    $(".spinner-border").attr("hidden", "true");
+    $("#spinner").addClass("visually-hidden");
     if (res.status === 200) {
         $("#resp").html(`NFT created successfully
         The next address is the NFT created ${res.data}
