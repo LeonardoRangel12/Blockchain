@@ -6,7 +6,7 @@ exports.getGames = async () => {
 };
 
 exports.getGameById = async (id) => {
-  let game = await game.findById(id).lean().exec();
+  let game = await Game.findById(id).lean().exec();
   return game;
 };
 
@@ -16,6 +16,7 @@ exports.createGame = async (requestBody) => {
     // developer: requestBody.developer,
     price: requestBody.price,
     description: requestBody.description,
+    imageUrl: requestBody.imageUrl,
     fileUrl: requestBody.fileUrl,
     // categories: requestBody.categories,
   });

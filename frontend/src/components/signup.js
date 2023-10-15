@@ -1,3 +1,4 @@
+import $ from "jquery";
 const signup = async () => {
     const signup = `
     <!-- Section: Design Block -->
@@ -62,7 +63,7 @@ const signup = async () => {
                   </div>
     
                   <!-- Submit button -->
-                  <button type="submit" class="btn btn-primary btn-block mb-4">
+                  <button id="signup" type="button" class="btn btn-primary btn-block mb-4">
                     Sign up
                   </button>
     
@@ -84,5 +85,9 @@ const signup = async () => {
 
   return signup;
 }
+
+$("#content").on("click", "#signup", async () => {
+  alert("Action not defined yet");
+});
 
 export default signup;

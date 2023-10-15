@@ -12,27 +12,31 @@ import landingPage from "./components/landingPage";
 import gamePage from "./components/gamePage";
 import main from "./components/main";
 import searchPage from "./components/searchPage";
+import upload from "./components/upload";
+const path = window.location.pathname;
+
 const app = async () => {
-  if (window.location.pathname === "/") {
+  if (path === "/") {
     $("#content").html(await landingPage());
   } else {
     $("#header").html(header());
 
-    if (window.location.pathname === "/transferir") {
+    if (path === "/transferir") {
       $("#content").html(await connect());
-    } else if (window.location.pathname === "/main") {
+    } else if ((path === "/main") | (path === "/home")) {
       $("#content").html(await main());
-    } else if (window.location.pathname === "/gamePage") {
+    } else if (path === "/gamePage") {
       $("#content").html(await gamePage());
-    } else if (window.location.pathname === "/signup") {
+    } else if (path === "/signup") {
       $("#content").html(await signup());
-    } else if (window.location.pathname === "/login") {
+    } else if (path === "/login") {
       $("#content").html(await login());
-    } else if (window.location.pathname === "/searchPage") {
+    } else if (path === "/searchPage") {
       $("#content").html(await searchPage());
-    } else if (window.location.pathname === "/upload") {
+    } else if (path === "/upload") {
       $("#content").html(await upload());
-    } else {
+    }
+    else {
       $("#content").html("404 Not Found");
     }
     $("#footer").html(await footer());

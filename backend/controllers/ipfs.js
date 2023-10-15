@@ -2,7 +2,7 @@ const { Web3Storage } = require("web3.storage");
 const Moralis = require("moralis")
 const { MintV2  } = require('@metaplex-foundation/mpl-candy-machine');
 
-const { PublicKey, Keypair } = require("@solana/web3.js");
+const { PublicKey, Keypair, LAMPORTS_PER_SOL } = require("@solana/web3.js");
 
 // Regresa el token de web3.storage
 const makeStorageClient = async () => {
@@ -16,7 +16,7 @@ const uploadFile = async (req, res, next) => {
   // Crea conexión
   const client = await makeStorageClient();
   // Obtiene el archivo
-  const file = req.file;
+  const file = req.files['file'][0];
 
   // Separa el nombre del archivo y la extensión
   const fileName = file.originalname.split(".")[0];
@@ -42,10 +42,10 @@ const addMetadata = async (req, res, next) => {
     const imageCid = res.locals.imageCid;
 
     const metadata = {
-      name: "NFT",
+      name: req.body.name,
       // symbol: "NB",
-      price: 0.1,
-      description: "My token chido",
+      price: req.body.price * LAMPORTS_PER_SOL,
+      description: req.body.description,
       fileUrl: `https://${imageCid}.ipfs.dweb.link/${name}`,
     }
     // Crea el buffer del JSON
@@ -54,37 +54,9 @@ const addMetadata = async (req, res, next) => {
     // Sube el metadata al archivo subido
     const metadataCid = await client.put([metadataFile]);
     res.locals.metadataCid = metadataCid;
-    console.log(`https://${metadataCid}.ipfs.dweb.link`);
 
     next();
 }
 
-const mintNFT = async (req, res, next) => {
-  const connection = res.locals.connection;
-  const metadataCid = res.locals.metadataCid;
-  const mint = await mintV2({
-    connection,
-    uri: `https://${metadataCid}.ipfs.dweb.link/metadata.json`,
-    name: "NFT",
-  });
 
-  const NFT = Moralis.Object.extend("NFT");
-
-  const nft = new NFT();
-
-  nft.set("name", "NFT");
-  nft.set('tokeAddress', mint.pubkey);
-  nft.set('tokenId', mint.pubKey);
-  nft.set('tokenUri', metadataCid);
-  nft.set('confirmed', false);
-
-  await nft.save();
-
-  console.log(await NFT.get(mint.pubKey));
-
-  nft.set('confirmed', true);
-
-  await nft.save();
-};
-
-module.exports = { uploadFile, addMetadata, mintNFT };
+module.exports = { uploadFile, addMetadata};

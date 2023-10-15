@@ -1,14 +1,14 @@
 const header = () => {
-    const template = `
+  const template = `
     <!-- Navbar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid justify-content-between">
     <!-- Left elements -->
     <div class="d-flex">
       <!-- Brand -->
-      <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="#">
+      <a href="/" class="navbar-brand me-2 mb-1 d-flex align-items-center" href="#">
         <img
-          src="https://imgur.com/iSQ7RB6"
+          src="https://i.imgur.com/iSQ7RB6.png"
           height="20"
           style="margin-top: 2px;"
         />
@@ -49,18 +49,19 @@ const header = () => {
         </a>
       </li>
       <li class="nav-item me-3 me-lg-1">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/upload">
           <span><i class="fas fa-plus-circle fa-lg"></i></span>
         </a>
       </li>
       <li class="nav-item dropdown me-3 me-lg-1">
         <a
           class="nav-link dropdown-toggle hidden-arrow"
-          href="#"
           id="navbarDropdownMenuLink"
           role="button"
+          href="#"
           data-mdb-toggle="dropdown"
           aria-expanded="false"
+
         >
           <i class="fas fa-bell fa-lg"></i>
         </a>
@@ -88,4 +89,3 @@ const header = () => {
 };
 
 export default header;
-

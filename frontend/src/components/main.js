@@ -10,10 +10,11 @@ const main = async () => {
   const url = backendEndpoint + "/game";
   const res = await axios.get(url);
   const games = res.data.games;
-  console.log(games);
-  games.forEach(async (element) => {
+
+  await games.forEach(async (element) => {
+    const cardTemplate = await card(element);
+    template += cardTemplate;
     console.log(template);
-    template = template + await card(element);
   });
   return template;
 };

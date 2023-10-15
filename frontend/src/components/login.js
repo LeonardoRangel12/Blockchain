@@ -1,5 +1,6 @@
 import $ from "jquery";
 import axios from "axios";
+import { backendEndpoint } from "../global";
 const login = async () => {
     const login = `
     <!-- Section: Login Design Block -->
@@ -80,16 +81,12 @@ $("#content").on("click", "#login", async (e) => {
   const password = $("#passwordInput").val();
   if(email == '') return
   if(password == '') return;
-
-  const res = await axios.post("http://localhost:3001/auth/login", {
+  alert("Connection made but no action defined yet");
+  const res = await axios.post(backendEndpoint + "/auth/login", {
     email: email,
     password: password,
-  });
-  console.log(res);
-  if (res.status === 200) {
-    window.location.href = "/";
-  } else {
-    window.location.href = "/login";
-  }
+  }, {withCredentials: true});
+  
+  
 });
 export default login;
